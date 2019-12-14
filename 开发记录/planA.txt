@@ -1,0 +1,46 @@
+$(function(){
+    $.ajax({
+        type:"GET",
+        url:"/userController/proRoom",
+        dataType:"json",
+        async:false,
+        success:function(data){
+            alert("success");
+            var obj=eval(data);
+            var tbody=$('<tbody></tbody>');
+            $(obj).each(function (index){
+                var val=obj[index];
+                var tr=$('<tr></tr>');
+                tr.append('<td>'+ val.roomId + '</td>');
+                tbody.append(tr);
+            });
+            $('#tableRoomList tbody').replaceWith(tbody);
+
+            // $(obj).each(function (index) {
+            //     var val = obj[index];
+            //     html +="<h1>测试："+val.name+"</h1>";
+            //
+            // });
+            // $("#test").html(html); //在html页面id=test的标签里显示html内容
+            alert("success over!");
+        },
+        error:function(e){
+            alert("error!");
+        }
+
+    });
+});
+
+
+---------------------------------------------------------------------------------------------js代码↑
+---------------------------------------------------------------------------------------------jsp代码↓
+<table class="table table-bordered table-hover table-striped" id="tableRoomList">
+        <thead>
+            <tr>
+                <th>Room ID:</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
